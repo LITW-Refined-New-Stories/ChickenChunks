@@ -1,0 +1,21 @@
+{
+	"modListVersion": 2,
+	"modList": [{
+		"modid": "${modId}",
+		"name": "${modName}",
+		"description": "Advanced chunkloading management",
+		"version": "${modVersion}",
+		"mcversion": "${minecraftVersion}",
+		"url": "http://www.minecraftforum.net/topic/909223",
+		"updateUrl": "",
+		"authorList": ["ChickenBones"],
+		"credits": "",
+		"logoFile": "",
+		"screenshots": [],
+		"parent": "",
+		"requiredMods": [],
+		"dependencies": ["CodeChickenCore"],
+		"dependants": [],
+		"useDependencyInformation": true
+	}]
+}
