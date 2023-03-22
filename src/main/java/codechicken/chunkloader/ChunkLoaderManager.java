@@ -467,9 +467,9 @@ public class ChunkLoaderManager {
         try {
             saveDir = new File(DimensionManager.getCurrentSaveRootDirectory(), "chickenchunks");
             if (!saveDir.exists()) saveDir.mkdirs();
+            loadLoginTimes();
             loadPlayerChunks();
             loadModChunks();
-            loadLoginTimes();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
