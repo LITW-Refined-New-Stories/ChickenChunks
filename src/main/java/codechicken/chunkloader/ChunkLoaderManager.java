@@ -768,6 +768,7 @@ public class ChunkLoaderManager {
     }
 
     public static void playerLogout(String username) {
+        loginTimes.put(username, System.currentTimeMillis());
         if (!allowOffline(username)) ReviveChange.PlayerDevive.list.add(getPlayerOrganiser(username));
     }
 
