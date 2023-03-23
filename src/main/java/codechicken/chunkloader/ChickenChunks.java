@@ -29,7 +29,7 @@ public class ChickenChunks {
 
     public static BlockChunkLoader blockChunkLoader;
 
-    @Instance(value = "ChickenChunks")
+    @Instance(value = Tags.MODID)
     public static ChickenChunks instance;
 
     @EventHandler
