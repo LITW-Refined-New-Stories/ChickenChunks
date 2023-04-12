@@ -302,6 +302,9 @@ public class ChunkLoaderManager {
 
             for (BlockCoord coord : verifyCoords) {
                 reviving = true;
+                if (!world.blockExists(coord.x, coord.y, coord.z)) {
+                    world.getChunkProvider().loadChunk(coord.x >> 4, coord.z >> 4);
+                }
                 TileEntity tile = world.getTileEntity(coord.x, coord.y, coord.z);
                 reviving = false;
                 if (tile instanceof IChickenChunkLoader) {

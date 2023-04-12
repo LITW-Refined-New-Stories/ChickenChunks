@@ -84,6 +84,10 @@ public class BlockChunkLoader extends BlockContainer {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7,
             float par8, float par9) {
+        if (!world.blockExists(x, y, z)) {
+            world.getChunkProvider().loadChunk(x >> 4, z >> 4);
+        }
+
         int meta = world.getBlockMetadata(x, y, z);
         if (meta != 0 || player.isSneaking()) return false;
 
