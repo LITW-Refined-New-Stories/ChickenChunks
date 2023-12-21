@@ -1,6 +1,6 @@
 ChickenChunks
 ==============
-THIS PROJECT IS RETIRED: See [here] for the current repo.
+~~THIS PROJECT IS RETIRED: See [here] for the current repo.~~ This is a fork specially for the 1.7.10 version and Java 17+ compatibility. It also has some minor fixes I needed to run the mod on my own server.
 
 As you all should know, the minecraft world is separated into chunks. 16x16 areas that are loaded depending on how close a player is to them. If you have machines or plants or anything that does something in a chunk that is not loaded because there are no players nearby nothing will happen.
 
