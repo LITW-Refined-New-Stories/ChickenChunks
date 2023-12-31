@@ -82,4 +82,11 @@ public class ChunkLoaderCPH implements IClientPacketHandler {
         packet.writeByte(radius);
         packet.sendToServer();
     }
+
+    public static void sendOwnerChange(TileChunkLoader tile, String owner) {
+        PacketCustom packet = new PacketCustom(channel, 3);
+        packet.writeCoord(tile.xCoord, tile.yCoord, tile.zCoord);
+        packet.writeString(owner);
+        packet.sendToServer();
+    }
 }

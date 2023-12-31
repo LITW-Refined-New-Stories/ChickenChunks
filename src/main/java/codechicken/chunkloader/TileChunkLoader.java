@@ -8,7 +8,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
-
+import net.minecraft.world.chunk.storage.ChunkLoader;
 import codechicken.lib.packet.PacketCustom;
 
 public class TileChunkLoader extends TileChunkLoaderBase {
@@ -27,6 +27,20 @@ public class TileChunkLoader extends TileChunkLoaderBase {
             ctile.active = packet.readBoolean();
             if (packet.readBoolean()) ctile.owner = packet.readString();
         }
+    }
+
+    public boolean setOwner(String newOwner) {
+        // If remote, we just remember the new owner.
+        if (worldObj.isRemote) {
+            owner = newOwner;
+            return true;
+        }
+        
+        // Disable for the old owner, then set the new owner and enable again.
+        deactivate();
+        owner = newOwner;
+        activate();
+        return true;
     }
 
     public boolean setShapeAndRadius(ChunkLoaderShape newShape, int newRadius) {

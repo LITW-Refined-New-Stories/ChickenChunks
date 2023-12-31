@@ -7,6 +7,7 @@ chickenchunks.gui.hidelasers=Hide Lasers
 chickenchunks.gui.chunk=%d Chunk
 chickenchunks.gui.chunks=%d Chunks
 chickenchunks.gui.radius=Radius
+chickenchunks.gui.setowner=Set Owner
 
 chickenchunks.shape.square=Square
 chickenchunks.shape.circle=Circle

@@ -427,6 +427,8 @@ public class ChunkLoaderManager {
 
     private static boolean reloadDimensions = false;
     private static boolean opInteract = false;
+    private static boolean userInteract = true;
+    private static boolean allowOwnerChange = false;
     private static int cleanupTicks;
     private static int maxChunks;
     private static int awayTimeout;
@@ -586,6 +588,12 @@ public class ChunkLoaderManager {
                 .getBooleanValue(true);
         opInteract = config.getTag("op-interact").setComment(
                 "Enabling this lets OPs alter other player's chunkloaders. WARNING: If you change a chunkloader, you have no idea what may break/explode by not being chunkloaded.")
+                .getBooleanValue(false);
+        userInteract = config.getTag("user-interact").setComment(
+                "Disabling this lets normal non-OP player's never open any chunkloader, also not their own. WARNING: Only to be used if 'op-interact' is true to ensure only admins can control chunk loaders.")
+                .getBooleanValue(true);
+        allowOwnerChange = config.getTag("allow-owner-change").setComment(
+                "Enabling this enables the option to change the owner of a Chunkloader. By default only the owner can change it. In case of 'user-interact' is false, only OPs can edit them. WARNING: If you change a owner of a chunkloader, you have no idea what may break/explode.")
                 .getBooleanValue(false);
         maxChunks = config.getTag("maxchunks").setComment("The maximum number of chunks per chunkloader")
                 .getIntValue(400);
@@ -781,6 +789,14 @@ public class ChunkLoaderManager {
 
     public static boolean opInteract() {
         return opInteract;
+    }
+
+    public static boolean userInteract() {
+        return userInteract;
+    }
+
+    public static boolean allowOwnerChange() {
+        return allowOwnerChange;
     }
 
     public static void unloadWorld(World world) {

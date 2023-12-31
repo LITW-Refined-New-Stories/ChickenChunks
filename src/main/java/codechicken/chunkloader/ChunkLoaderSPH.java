@@ -21,7 +21,9 @@ public class ChunkLoaderSPH implements IServerPacketHandler {
             case 2:
                 handleChunkLoaderChangePacket(sender.worldObj, packet);
                 break;
-
+            case 3:
+                handleChunkLoaderOwnerPackage(sender.worldObj, packet);
+                break;
         }
     }
 
@@ -30,6 +32,14 @@ public class ChunkLoaderSPH implements IServerPacketHandler {
         if (tile instanceof TileChunkLoader) {
             TileChunkLoader ctile = (TileChunkLoader) tile;
             ctile.setShapeAndRadius(ChunkLoaderShape.values()[packet.readUByte()], packet.readUByte());
+        }
+    }
+
+    private void handleChunkLoaderOwnerPackage(World world, PacketCustom packet) {
+        TileEntity tile = world.getTileEntity(packet.readInt(), packet.readInt(), packet.readInt());
+        if (tile instanceof TileChunkLoader) {
+            TileChunkLoader ctile = (TileChunkLoader) tile;
+            ctile.setOwner(packet.readString());
         }
     }
 }

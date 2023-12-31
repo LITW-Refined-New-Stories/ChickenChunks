@@ -93,7 +93,7 @@ public class BlockChunkLoader extends BlockContainer {
 
         if (!world.isRemote) {
             TileChunkLoader tile = (TileChunkLoader) world.getTileEntity(x, y, z);
-            if (tile.owner == null || tile.owner.equals(player.getCommandSenderName())
+            if (tile.owner == null || (ChunkLoaderManager.userInteract() && tile.owner.equals(player.getCommandSenderName()))
                     || ChunkLoaderManager.opInteract() && ServerUtils.isPlayerOP(player.getCommandSenderName())) {
                 PacketCustom packet = new PacketCustom(ChunkLoaderSPH.channel, 12);
                 packet.writeCoord(x, y, z);
