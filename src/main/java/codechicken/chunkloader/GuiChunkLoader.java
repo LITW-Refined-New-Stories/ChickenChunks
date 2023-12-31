@@ -36,7 +36,7 @@ public class GuiChunkLoader extends GuiScreen {
 
         ownerText = new GuiTextField(fontRendererObj, width / 2 - 80, height / 2 - 7, 80, 18);
         ownerText.setText(tile.getOwner());
-        
+
         updateNames();
 
         super.initGui();
@@ -63,8 +63,7 @@ public class GuiChunkLoader extends GuiScreen {
         drawDefaultBackground();
         drawContainerBackground();
 
-        if (enableOwner())
-            ownerText.drawTextBox();
+        if (enableOwner()) ownerText.drawTextBox();
 
         super.drawScreen(i, j, f);// buttons
 
@@ -114,8 +113,7 @@ public class GuiChunkLoader extends GuiScreen {
         if (guibutton.id == 3) tile.renderInfo.showLasers = !tile.renderInfo.showLasers;
         if (guibutton.id == 4)
             ChunkLoaderCPH.sendShapeChange(tile, button == 1 ? tile.shape.prev() : tile.shape.next(), tile.radius);
-        if (guibutton.id == 5)
-            ChunkLoaderCPH.sendOwnerChange(tile, ownerText.getText());
+        if (guibutton.id == 5) ChunkLoaderCPH.sendOwnerChange(tile, ownerText.getText());
     }
 
     private void drawContainerBackground() {
@@ -128,7 +126,8 @@ public class GuiChunkLoader extends GuiScreen {
     }
 
     private boolean enableOwner() {
-        return ChunkLoaderManager.allowOwnerChange() && (!ChunkLoaderManager.userInteract() || (ChunkLoaderManager.opInteract() && ServerUtils.isPlayerOP(this.tile.owner)));
+        return ChunkLoaderManager.allowOwnerChange() && (!ChunkLoaderManager.userInteract()
+                || (ChunkLoaderManager.opInteract() && ServerUtils.isPlayerOP(this.tile.owner)));
     }
 
     public boolean doesGuiPauseGame() {

@@ -8,7 +8,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.storage.ChunkLoader;
+
 import codechicken.lib.packet.PacketCustom;
 
 public class TileChunkLoader extends TileChunkLoaderBase {
@@ -35,7 +35,7 @@ public class TileChunkLoader extends TileChunkLoaderBase {
             owner = newOwner;
             return true;
         }
-        
+
         // Disable for the old owner, then set the new owner and enable again.
         deactivate();
         owner = newOwner;
