@@ -124,9 +124,9 @@ public class PlayerChunkViewer extends JFrame {
             chunkPane.setContentType("text/html");
 
             chunkScrollPane = new JScrollPane(
-                    chunkPane,
-                    ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                chunkPane,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
             add(chunkScrollPane);
 
             ticketComboBox = new JComboBox<String>();
@@ -163,15 +163,15 @@ public class PlayerChunkViewer extends JFrame {
             if (ticket.player != null) info += "<br>Player: " + ticket.player;
             info += "<br>Type: " + ticket.type.name();
             if (ticket.entity != null) info += "<br>Entity: " + EntityList.classToStringMapping.get(ticket.entity)
-                    + "#"
-                    + ticket.entity.getEntityId()
-                    + " ("
-                    + String.format("%.2f", ticket.entity.posX)
-                    + ", "
-                    + String.format("%.2f", ticket.entity.posY)
-                    + ", "
-                    + String.format("%.2f", ticket.entity.posZ)
-                    + ")";
+                + "#"
+                + ticket.entity.getEntityId()
+                + " ("
+                + String.format("%.2f", ticket.entity.posX)
+                + ", "
+                + String.format("%.2f", ticket.entity.posY)
+                + ", "
+                + String.format("%.2f", ticket.entity.posZ)
+                + ")";
             info += "</span><p style=\"text-align:center; font-family:Tahoma; font-size:10px\">ForcedChunks</p>";
             String chunks = "<span style=\"font-family:Tahoma; font-size:10px\">";
             for (ChunkCoordIntPair coord : ticket.chunkSet) chunks += coord.chunkXPos + ", " + coord.chunkZPos + "<br>";
@@ -235,7 +235,8 @@ public class PlayerChunkViewer extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                if (Minecraft.getMinecraft().getNetHandler() != null) ChunkLoaderCPH.sendGuiClosing();
+                if (Minecraft.getMinecraft()
+                    .getNetHandler() != null) ChunkLoaderCPH.sendGuiClosing();
             }
         });
 
@@ -272,14 +273,18 @@ public class PlayerChunkViewer extends JFrame {
             public void addLayoutComponent(String paramString, Component paramComponent) {}
         });
 
-        ToolTipManager.sharedInstance().setEnabled(true);
-        ToolTipManager.sharedInstance().setInitialDelay(0);
-        ToolTipManager.sharedInstance().setReshowDelay(100);
+        ToolTipManager.sharedInstance()
+            .setEnabled(true);
+        ToolTipManager.sharedInstance()
+            .setInitialDelay(0);
+        ToolTipManager.sharedInstance()
+            .setReshowDelay(100);
         addComponents();
         pack();
         setTitle("Chunk Viewer");
 
-        Point p = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+        Point p = GraphicsEnvironment.getLocalGraphicsEnvironment()
+            .getCenterPoint();
         int width = 500;
         int height = 500;
         setCenter(x, z);
@@ -327,7 +332,8 @@ public class PlayerChunkViewer extends JFrame {
         if (dims.size() != dimComboBox.getItemCount()) needsReset = true;
         else {
             for (int index = 0; index < dimComboBox.getItemCount();) {
-                if (!dims.get(index).equals(dimComboBox.getItemAt(index))) {
+                if (!dims.get(index)
+                    .equals(dimComboBox.getItemAt(index))) {
                     needsReset = true;
                     break;
                 }
@@ -427,7 +433,8 @@ public class PlayerChunkViewer extends JFrame {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (e.getActionCommand().equals("comboBoxChanged")) {
+                    if (e.getActionCommand()
+                        .equals("comboBoxChanged")) {
                         if (dimComboBox.getSelectedItem() != null) dimension = (Integer) dimComboBox.getSelectedItem();
                     }
                 }
@@ -563,8 +570,8 @@ public class PlayerChunkViewer extends JFrame {
         @Override
         public void mouseDragged(MouseEvent event) {
             setCenter(
-                    (mouseClickedX - event.getX()) * 4 + centerClickedX,
-                    (mouseClickedY - event.getY()) * 4 + centerClickedZ);
+                (mouseClickedX - event.getX()) * 4 + centerClickedX,
+                (mouseClickedY - event.getY()) * 4 + centerClickedZ);
         }
 
         public LinkedList<TicketInfo> getTicketsUnderMouse(DimensionChunkInfo dimInfo, Point mouse) {
@@ -603,13 +610,13 @@ public class PlayerChunkViewer extends JFrame {
                     if (info.dimension == dimension) {
                         Point pos = getChunkRenderPosition((int) info.position.x, 0, (int) info.position.z);
                         if (new Rectangle(pos.x, pos.y, 4, 4).contains(mouse)) tip += "\n\n" + info.username
-                                + "\n("
-                                + String.format("%.2f", info.position.x)
-                                + ", "
-                                + String.format("%.2f", info.position.y)
-                                + ", "
-                                + String.format("%.2f", info.position.z)
-                                + ")";
+                            + "\n("
+                            + String.format("%.2f", info.position.x)
+                            + ", "
+                            + String.format("%.2f", info.position.y)
+                            + ", "
+                            + String.format("%.2f", info.position.z)
+                            + ")";
                     }
                 }
                 setToolTipText(tip.length() > 0 ? tip : null);

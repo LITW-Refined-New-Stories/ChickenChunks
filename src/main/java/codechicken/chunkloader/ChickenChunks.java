@@ -13,16 +13,16 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 @Mod(
-        modid = Tags.MODID,
-        name = Tags.MODNAME,
-        version = Tags.VERSION,
-        dependencies = "after:CodeChickenCore",
-        acceptedMinecraftVersions = CodeChickenCorePlugin.mcVersion)
+    modid = Tags.MODID,
+    name = Tags.MODNAME,
+    version = Tags.VERSION,
+    dependencies = "after:CodeChickenCore",
+    acceptedMinecraftVersions = CodeChickenCorePlugin.mcVersion)
 public class ChickenChunks {
 
     @SidedProxy(
-            clientSide = "codechicken.chunkloader.ChunkLoaderClientProxy",
-            serverSide = "codechicken.chunkloader.ChunkLoaderProxy")
+        clientSide = "codechicken.chunkloader.ChunkLoaderClientProxy",
+        serverSide = "codechicken.chunkloader.ChunkLoaderProxy")
     public static ChunkLoaderProxy proxy;
 
     public static ConfigFile config;
@@ -35,7 +35,7 @@ public class ChickenChunks {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         config = new ConfigFile(new File(event.getModConfigurationDirectory(), "ChickenChunks.cfg")).setComment(
-                "ChunkLoader Configuration File\nDeleting any element will restore it to it's default value\nBlock ID's will be automatically generated the first time it's run");
+            "ChunkLoader Configuration File\nDeleting any element will restore it to it's default value\nBlock ID's will be automatically generated the first time it's run");
     }
 
     @EventHandler

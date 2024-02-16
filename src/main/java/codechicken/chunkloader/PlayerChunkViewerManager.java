@@ -81,7 +81,8 @@ public class PlayerChunkViewerManager {
         time++;
         for (String username : logouts)
             for (Iterator<PlayerChunkViewerTracker> iterator = playerViewers.iterator(); iterator.hasNext();)
-                if (iterator.next().owner.getCommandSenderName().equals(username)) iterator.remove();
+                if (iterator.next().owner.getCommandSenderName()
+                    .equals(username)) iterator.remove();
 
         for (String username : logouts)
             for (PlayerChunkViewerTracker tracker : playerViewers) tracker.removePlayer(username);
@@ -160,8 +161,8 @@ public class PlayerChunkViewerManager {
     }
 
     public boolean isViewerOpen(String username) {
-        for (PlayerChunkViewerTracker tracker : playerViewers)
-            if (tracker.owner.getCommandSenderName().equals(username)) return true;
+        for (PlayerChunkViewerTracker tracker : playerViewers) if (tracker.owner.getCommandSenderName()
+            .equals(username)) return true;
 
         return false;
     }
@@ -172,6 +173,7 @@ public class PlayerChunkViewerManager {
 
     public void closeViewer(String username) {
         for (Iterator<PlayerChunkViewerTracker> iterator = playerViewers.iterator(); iterator.hasNext();)
-            if (iterator.next().owner.getCommandSenderName().equals(username)) iterator.remove();
+            if (iterator.next().owner.getCommandSenderName()
+                .equals(username)) iterator.remove();
     }
 }

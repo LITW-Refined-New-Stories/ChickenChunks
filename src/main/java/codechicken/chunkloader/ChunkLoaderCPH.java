@@ -20,40 +20,47 @@ public class ChunkLoaderCPH implements IClientPacketHandler {
         switch (packet.getType()) {
             case 1:
                 PlayerChunkViewer.openViewer(
-                        (int) mc.thePlayer.posX,
-                        (int) mc.thePlayer.posZ,
-                        CommonUtils.getDimension(mc.theWorld));
+                    (int) mc.thePlayer.posX,
+                    (int) mc.thePlayer.posZ,
+                    CommonUtils.getDimension(mc.theWorld));
                 break;
             case 2:
-                PlayerChunkViewer.instance().loadDimension(packet, mc.theWorld);
+                PlayerChunkViewer.instance()
+                    .loadDimension(packet, mc.theWorld);
                 break;
             case 3:
-                PlayerChunkViewer.instance().unloadDimension(packet.readInt());
+                PlayerChunkViewer.instance()
+                    .unloadDimension(packet.readInt());
                 break;
             case 4:
-                PlayerChunkViewer.instance().handleChunkChange(
+                PlayerChunkViewer.instance()
+                    .handleChunkChange(
                         packet.readInt(),
                         new ChunkCoordIntPair(packet.readInt(), packet.readInt()),
                         packet.readBoolean());
                 break;
             case 5:
-                PlayerChunkViewer.instance().handleTicketChange(
+                PlayerChunkViewer.instance()
+                    .handleTicketChange(
                         packet.readInt(),
                         packet.readInt(),
                         new ChunkCoordIntPair(packet.readInt(), packet.readInt()),
                         packet.readBoolean());
                 break;
             case 6:
-                PlayerChunkViewer.instance().handlePlayerUpdate(
+                PlayerChunkViewer.instance()
+                    .handlePlayerUpdate(
                         packet.readString(),
                         packet.readInt(),
                         new Vector3(packet.readFloat(), packet.readFloat(), packet.readFloat()));
                 break;
             case 7:
-                PlayerChunkViewer.instance().removePlayer(packet.readString());
+                PlayerChunkViewer.instance()
+                    .removePlayer(packet.readString());
                 break;
             case 8:
-                PlayerChunkViewer.instance().handleNewTicket(packet, mc.theWorld);
+                PlayerChunkViewer.instance()
+                    .handleNewTicket(packet, mc.theWorld);
                 break;
             case 10:
                 TileChunkLoader.handleDescriptionPacket(packet, mc.theWorld);

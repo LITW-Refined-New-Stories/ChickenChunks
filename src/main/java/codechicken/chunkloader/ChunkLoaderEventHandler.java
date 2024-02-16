@@ -22,14 +22,16 @@ public class ChunkLoaderEventHandler {
 
     @SubscribeEvent
     public void serverTick(ServerTickEvent event) {
-        if (event.phase == Phase.END) PlayerChunkViewerManager.instance().update();
+        if (event.phase == Phase.END) PlayerChunkViewerManager.instance()
+            .update();
     }
 
     @SubscribeEvent
     public void worldTick(WorldTickEvent event) {
         if (event.phase == Phase.END && !event.world.isRemote) {
             ChunkLoaderManager.tickEnd((WorldServer) event.world);
-            PlayerChunkViewerManager.instance().calculateChunkChanges((WorldServer) event.world);
+            PlayerChunkViewerManager.instance()
+                .calculateChunkChanges((WorldServer) event.world);
         }
     }
 
@@ -61,10 +63,11 @@ public class ChunkLoaderEventHandler {
     @SubscribeEvent
     public void onWorldUnload(Unload event) {
         if (!event.world.isRemote) {
-            if (ServerUtils.mc().isServerRunning()) {
+            if (ServerUtils.mc()
+                .isServerRunning()) {
                 ChunkLoaderManager.unloadWorld(event.world);
                 PlayerChunkViewerManager.instance().dimChanges
-                        .add(new DimensionChange((WorldServer) event.world, false));
+                    .add(new DimensionChange((WorldServer) event.world, false));
             } else {
                 PlayerChunkViewerManager.serverShutdown();
                 ChunkLoaderManager.serverShutdown();

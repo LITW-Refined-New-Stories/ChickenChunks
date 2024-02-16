@@ -37,7 +37,7 @@ public class TileSpotLoader extends TileChunkLoaderBase {
     }
 
     public static HashSet<ChunkCoordIntPair> getContainedChunks(ChunkLoaderShape shape, int xCoord, int zCoord,
-            int radius) {
+        int radius) {
         return shape.getLoadedChunks(xCoord >> 4, zCoord >> 4, radius - 1);
     }
 }

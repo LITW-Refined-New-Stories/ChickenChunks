@@ -73,9 +73,9 @@ public class TileChunkLoaderRenderer extends TileEntitySpecialRenderer {
         rot = ClientUtils.getRenderTime() * active / 3F;
 
         Matrix4 pearlMat = CCModelLibrary.getRenderMatrix(
-                new Vector3(d + 0.5, d1 + height + (updown + 0.3) * active, d2 + 0.5),
-                new Rotation(rot, new Vector3(0, 1, 0)),
-                size);
+            new Vector3(d + 0.5, d1 + height + (updown + 0.3) * active, d2 + 0.5),
+            new Rotation(rot, new Vector3(0, 1, 0)),
+            size);
 
         GL11.glDisable(GL11.GL_LIGHTING);
         CCRenderState.changeTexture("chickenchunks:textures/hedronmap.png");
@@ -111,13 +111,13 @@ public class TileChunkLoaderRenderer extends TileEntitySpecialRenderer {
 
     public boolean ptOnLineInSegment(Point2D point, Line2D line) {
         return point.getX() >= Math.min(line.getX1(), line.getX2())
-                && point.getX() <= Math.max(line.getX1(), line.getX2())
-                && point.getY() >= Math.min(line.getY1(), line.getY2())
-                && point.getY() <= Math.max(line.getY1(), line.getY2());
+            && point.getX() <= Math.max(line.getX1(), line.getX2())
+            && point.getY() >= Math.min(line.getY1(), line.getY2())
+            && point.getY() <= Math.max(line.getY1(), line.getY2());
     }
 
     public void drawRays(double d, double d1, double d2, double rotationAngle, double updown, int x, int y, int z,
-            Collection<ChunkCoordIntPair> chunkSet) {
+        Collection<ChunkCoordIntPair> chunkSet) {
         int cx = (x >> 4) << 4;
         int cz = (z >> 4) << 4;
 
@@ -139,10 +139,10 @@ public class TileChunkLoaderRenderer extends TileEntitySpecialRenderer {
         }
 
         Line2D.Double[] rays = new Line2D.Double[] {
-                new Line2D.Double(center.x, center.y, center.x + 1600 * absRays[0].x, center.y + 1600 * absRays[0].y),
-                new Line2D.Double(center.x, center.y, center.x + 1600 * absRays[1].x, center.y + 1600 * absRays[1].y),
-                new Line2D.Double(center.x, center.y, center.x + 1600 * absRays[2].x, center.y + 1600 * absRays[2].y),
-                new Line2D.Double(center.x, center.y, center.x + 1600 * absRays[3].x, center.y + 1600 * absRays[3].y) };
+            new Line2D.Double(center.x, center.y, center.x + 1600 * absRays[0].x, center.y + 1600 * absRays[0].y),
+            new Line2D.Double(center.x, center.y, center.x + 1600 * absRays[1].x, center.y + 1600 * absRays[1].y),
+            new Line2D.Double(center.x, center.y, center.x + 1600 * absRays[2].x, center.y + 1600 * absRays[2].y),
+            new Line2D.Double(center.x, center.y, center.x + 1600 * absRays[3].x, center.y + 1600 * absRays[3].y) };
 
         for (ChunkCoordIntPair pair : chunkSet) {
             int chunkBlockX = pair.chunkXPos << 4;
@@ -151,10 +151,10 @@ public class TileChunkLoaderRenderer extends TileEntitySpecialRenderer {
                 int[] offset1 = coords[side];
                 int[] offset2 = coords[(side + 1) % 4];
                 Line2D.Double line1 = new Line2D.Double(
-                        chunkBlockX + offset1[0],
-                        chunkBlockZ + offset1[1],
-                        chunkBlockX + offset2[0],
-                        chunkBlockZ + offset2[1]);
+                    chunkBlockX + offset1[0],
+                    chunkBlockZ + offset1[1],
+                    chunkBlockX + offset2[0],
+                    chunkBlockZ + offset2[1]);
                 for (int ray = 0; ray < 4; ray++) {
                     Point2D.Double isct = findIntersection(line1, rays[ray]);
                     if (isct == null) continue;

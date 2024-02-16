@@ -21,7 +21,8 @@ public class CommandChunkLoaders extends PlayerCommand {
     @Override
     public void handleCommand(WorldServer world, EntityPlayerMP player, String[] args) {
         WCommandSender wrapped = new WCommandSender(player);
-        if (PlayerChunkViewerManager.instance().isViewerOpen(player.getCommandSenderName())) {
+        if (PlayerChunkViewerManager.instance()
+            .isViewerOpen(player.getCommandSenderName())) {
             wrapped.chatT("command.chunkloaders.alreadyopen");
             return;
         }

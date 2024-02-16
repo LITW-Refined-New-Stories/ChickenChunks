@@ -45,7 +45,9 @@ public class PlayerChunkViewerTracker {
         String player = ticket.getPlayerName();
         packet.writeBoolean(player != null);
         if (player != null) packet.writeString(player);
-        packet.writeByte(ticket.getType().ordinal());
+        packet.writeByte(
+            ticket.getType()
+                .ordinal());
         Entity entity = ticket.getEntity();
         if (entity != null) packet.writeInt(entity.getEntityId());
         packet.writeShort(chunkSet.size());
@@ -70,8 +72,9 @@ public class PlayerChunkViewerTracker {
             packet.writeInt(chunk.zPosition);
         }
 
-        Map<Ticket, Collection<ChunkCoordIntPair>> tickets = ForgeChunkManager.getPersistentChunksFor(world).inverse()
-                .asMap();
+        Map<Ticket, Collection<ChunkCoordIntPair>> tickets = ForgeChunkManager.getPersistentChunksFor(world)
+            .inverse()
+            .asMap();
         packet.writeInt(tickets.size());
         for (Entry<Ticket, Collection<ChunkCoordIntPair>> entry : tickets.entrySet())
             writeTicketToPacket(packet, entry.getKey(), entry.getValue());

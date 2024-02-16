@@ -44,7 +44,7 @@ public class GuiChunkLoader extends GuiScreen {
 
     public void updateNames() {
         laserButton.displayString = tile.renderInfo.showLasers ? lang.translate("hidelasers")
-                : lang.translate("showlasers");
+            : lang.translate("showlasers");
         shapeButton.displayString = tile.shape.getName();
     }
 
@@ -127,7 +127,7 @@ public class GuiChunkLoader extends GuiScreen {
 
     private boolean enableOwner() {
         return ChunkLoaderManager.allowOwnerChange() && (!ChunkLoaderManager.userInteract()
-                || (ChunkLoaderManager.opInteract() && ServerUtils.isPlayerOP(this.tile.owner)));
+            || (ChunkLoaderManager.opInteract() && ServerUtils.isPlayerOP(this.tile.owner)));
     }
 
     public boolean doesGuiPauseGame() {

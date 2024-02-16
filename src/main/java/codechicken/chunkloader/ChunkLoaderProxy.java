@@ -18,7 +18,8 @@ public class ChunkLoaderProxy {
 
     public void init() {
         blockChunkLoader = new BlockChunkLoader();
-        blockChunkLoader.setBlockName("chickenChunkLoader").setCreativeTab(CreativeTabs.tabMisc);
+        blockChunkLoader.setBlockName("chickenChunkLoader")
+            .setCreativeTab(CreativeTabs.tabMisc);
         GameRegistry.registerBlock(blockChunkLoader, ItemChunkLoader.class, "chickenChunkLoader");
 
         GameRegistry.registerTileEntity(TileChunkLoader.class, "ChickenChunkLoader");
@@ -28,36 +29,39 @@ public class ChunkLoaderProxy {
         ChunkLoaderManager.initConfig(config);
 
         MinecraftForge.EVENT_BUS.register(new ChunkLoaderEventHandler());
-        FMLCommonHandler.instance().bus().register(new ChunkLoaderEventHandler());
+        FMLCommonHandler.instance()
+            .bus()
+            .register(new ChunkLoaderEventHandler());
         ChunkLoaderManager.registerMod(instance);
 
         GameRegistry.addRecipe(
-                new ItemStack(blockChunkLoader, 1, 0),
-                " p ",
-                "ggg",
-                "gEg",
-                'p',
-                Items.ender_pearl,
-                'g',
-                Items.gold_ingot,
-                'd',
-                Items.diamond,
-                'E',
-                Blocks.enchanting_table);
+            new ItemStack(blockChunkLoader, 1, 0),
+            " p ",
+            "ggg",
+            "gEg",
+            'p',
+            Items.ender_pearl,
+            'g',
+            Items.gold_ingot,
+            'd',
+            Items.diamond,
+            'E',
+            Blocks.enchanting_table);
 
         GameRegistry.addRecipe(
-                new ItemStack(blockChunkLoader, 10, 1),
-                "ppp",
-                "pcp",
-                "ppp",
-                'p',
-                Items.ender_pearl,
-                'c',
-                new ItemStack(blockChunkLoader, 1, 0));
+            new ItemStack(blockChunkLoader, 10, 1),
+            "ppp",
+            "pcp",
+            "ppp",
+            'p',
+            Items.ender_pearl,
+            'c',
+            new ItemStack(blockChunkLoader, 1, 0));
     }
 
     public void registerCommands(FMLServerStartingEvent event) {
-        CommandHandler commandManager = (CommandHandler) event.getServer().getCommandManager();
+        CommandHandler commandManager = (CommandHandler) event.getServer()
+            .getCommandManager();
         commandManager.registerCommand(new CommandChunkLoaders());
         commandManager.registerCommand(new CommandDebugInfo());
     }

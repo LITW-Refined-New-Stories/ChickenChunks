@@ -14,7 +14,8 @@ public class ChunkLoaderClientProxy extends ChunkLoaderProxy {
 
     @Override
     public void init() {
-        if (config.getTag("checkUpdates").getBooleanValue(true)) CCUpdateChecker.updateCheck("ChickenChunks");
+        if (config.getTag("checkUpdates")
+            .getBooleanValue(true)) CCUpdateChecker.updateCheck("ChickenChunks");
         ClientUtils.enhanceSupportersList("ChickenChunks");
 
         super.init();
@@ -28,6 +29,7 @@ public class ChunkLoaderClientProxy extends ChunkLoaderProxy {
 
     @Override
     public void openGui(TileChunkLoader tile) {
-        Minecraft.getMinecraft().displayGuiScreen(new GuiChunkLoader(tile));
+        Minecraft.getMinecraft()
+            .displayGuiScreen(new GuiChunkLoader(tile));
     }
 }

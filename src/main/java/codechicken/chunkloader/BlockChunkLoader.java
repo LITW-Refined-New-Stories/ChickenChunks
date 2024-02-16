@@ -48,7 +48,7 @@ public class BlockChunkLoader extends BlockContainer {
 
     @Override
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB par5AxisAlignedBB,
-            List par6List, Entity par7Entity) {
+        List par6List, Entity par7Entity) {
         setBlockBoundsBasedOnState(world, x, y, z);
         super.addCollisionBoxesToList(world, x, y, z, par5AxisAlignedBB, par6List, par7Entity);
     }
@@ -83,9 +83,10 @@ public class BlockChunkLoader extends BlockContainer {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7,
-            float par8, float par9) {
+        float par8, float par9) {
         if (!world.blockExists(x, y, z)) {
-            world.getChunkProvider().loadChunk(x >> 4, z >> 4);
+            world.getChunkProvider()
+                .loadChunk(x >> 4, z >> 4);
         }
 
         int meta = world.getBlockMetadata(x, y, z);
@@ -94,8 +95,8 @@ public class BlockChunkLoader extends BlockContainer {
         if (!world.isRemote) {
             TileChunkLoader tile = (TileChunkLoader) world.getTileEntity(x, y, z);
             if (tile.owner == null
-                    || (ChunkLoaderManager.userInteract() && tile.owner.equals(player.getCommandSenderName()))
-                    || ChunkLoaderManager.opInteract() && ServerUtils.isPlayerOP(player.getCommandSenderName())) {
+                || (ChunkLoaderManager.userInteract() && tile.owner.equals(player.getCommandSenderName()))
+                || ChunkLoaderManager.opInteract() && ServerUtils.isPlayerOP(player.getCommandSenderName())) {
                 PacketCustom packet = new PacketCustom(ChunkLoaderSPH.channel, 12);
                 packet.writeCoord(x, y, z);
                 packet.sendToPlayer(player);
