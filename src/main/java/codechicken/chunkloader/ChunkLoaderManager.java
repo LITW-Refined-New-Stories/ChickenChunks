@@ -113,7 +113,11 @@ public class ChunkLoaderManager {
             Ticket ticket = heldChunks.remove(coord);
             if (ticket == null) return;
 
-            ForgeChunkManager.unforceChunk(ticket, coord.getChunkCoord());
+            try {
+                ForgeChunkManager.unforceChunk(ticket, coord.getChunkCoord());
+            } catch (NullPointerException ignore) {
+                // Catches an error since Hodgepodge 2.6.7 (2.6.6 is the last version that works)
+            }
 
             if (ticket.getChunkList()
                 .size() == ticket.getChunkListDepth() - 1) {
