@@ -646,7 +646,7 @@ public class ChunkLoaderManager {
             .getBooleanValue(true);
         allowOwnerChange = config.getTag("allow-owner-change")
             .setComment(
-                "Enabling this enables the option to change the owner of a Chunkloader. By default only the owner can change it. In case of 'user-interact' is false, only OPs can edit them. WARNING: If you change a owner of a chunkloader, you have no idea what may break/explode.")
+                "Enabling this enables the option to change the owner of a Chunkloader. If op-interact is enabled, only OPs can change this (for security reason). WARNING: If you change a owner of a chunkloader, you have no idea what may break/explode.")
             .getBooleanValue(false);
         maxChunks = config.getTag("maxchunks")
             .setComment("The maximum number of chunks per chunkloader")
