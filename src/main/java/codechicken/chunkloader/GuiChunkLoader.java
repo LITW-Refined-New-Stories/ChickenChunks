@@ -126,8 +126,7 @@ public class GuiChunkLoader extends GuiScreen {
     }
 
     private boolean enableOwner() {
-        return ChunkLoaderManager.allowOwnerChange() && (!ChunkLoaderManager.userInteract()
-            || (ChunkLoaderManager.opInteract() && ServerUtils.isPlayerOP(this.tile.owner)));
+        return ChunkLoaderManager.allowOwnerChange() && (!ChunkLoaderManager.opInteract() || ServerUtils.isPlayerOP(this.tile.owner));
     }
 
     public boolean doesGuiPauseGame() {
