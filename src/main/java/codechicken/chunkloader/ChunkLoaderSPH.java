@@ -5,6 +5,7 @@ import net.minecraft.network.play.INetHandlerPlayServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import codechicken.core.ServerUtils;
 import codechicken.lib.packet.PacketCustom;
 import codechicken.lib.packet.PacketCustom.IServerPacketHandler;
 
@@ -23,7 +24,7 @@ public class ChunkLoaderSPH implements IServerPacketHandler {
                 handleChunkLoaderChangePacket(sender.worldObj, packet);
                 break;
             case 3:
-                handleChunkLoaderOwnerPackage(sender.worldObj, packet);
+                handleChunkLoaderOwnerPackage(sender, packet);
                 break;
         }
     }
@@ -36,8 +37,11 @@ public class ChunkLoaderSPH implements IServerPacketHandler {
         }
     }
 
-    private void handleChunkLoaderOwnerPackage(World world, PacketCustom packet) {
-        TileEntity tile = world.getTileEntity(packet.readInt(), packet.readInt(), packet.readInt());
+    private void handleChunkLoaderOwnerPackage(EntityPlayerMP sender, PacketCustom packet) {
+        if (ChunkLoaderManager.opInteract() && !ServerUtils.isPlayerOP(sender.getCommandSenderName())) {
+            return; // Ignore, op can change owner only, if op-interact is enabled
+        }
+        TileEntity tile = sender.worldObj.getTileEntity(packet.readInt(), packet.readInt(), packet.readInt());
         if (tile instanceof TileChunkLoader) {
             TileChunkLoader ctile = (TileChunkLoader) tile;
             ctile.setOwner(packet.readString());

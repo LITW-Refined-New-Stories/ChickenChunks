@@ -6,7 +6,6 @@ import net.minecraft.client.gui.GuiTextField;
 
 import org.lwjgl.opengl.GL11;
 
-import codechicken.core.ServerUtils;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.util.LangProxy;
 
@@ -126,8 +125,7 @@ public class GuiChunkLoader extends GuiScreen {
     }
 
     private boolean enableOwner() {
-        return ChunkLoaderManager.allowOwnerChange()
-            && (!ChunkLoaderManager.opInteract() || ServerUtils.isPlayerOP(this.tile.owner));
+        return ChunkLoaderManager.allowOwnerChange();
     }
 
     public boolean doesGuiPauseGame() {
